@@ -28,7 +28,8 @@ public class Hooks {
         //inisiasi library selenium
         driver = new ChromeDriver(GenerateDriverChrome());
 
-        String appUrl = "https://www.saucedemo.com/";
+//        String appUrl = "https://www.saucedemo.com/";
+        String appUrl = "https://middleman-fe.vercel.app/";
         driver.get(appUrl);//fungsi untuk ngebuka link html
         driver.manage().window().maximize();//fungsi untuk maximize browser
     }
