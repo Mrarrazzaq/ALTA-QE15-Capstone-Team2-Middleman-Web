@@ -4,8 +4,10 @@ import org.example.BasePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-//import org.openqa.selenium.Keys;
-//import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import java.time.Duration;
+import org.openqa.selenium.Alert;
 
 public class LoginAdminPage extends BasePage{
     public LoginAdminPage(WebDriver driver) {
@@ -40,10 +42,8 @@ public class LoginAdminPage extends BasePage{
         click(buttonLogin);
     }
     public boolean verifyLabelProduct(){
-//        Actions actions = new Actions(driver);
-//        actions.sendKeys(Keys.ENTER).perform();
-//        scrollIntoView(labelProduct);
-        waitForElementVisible(labelProduct);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
+        wait.until(ExpectedConditions.visibilityOf(labelProduct));
         return isDisplayed(labelProduct);
     }
     public boolean verifyLoginPage(){
@@ -55,5 +55,22 @@ public class LoginAdminPage extends BasePage{
     public boolean verifyLandingPage() {
         waitForElementVisible(buttonToSignIn);
         return isDisplayed(buttonToSignIn);
+    }
+
+    public void verifyAllert() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        Alert alert = wait.until(ExpectedConditions.alertIsPresent());
+        if (alert == null) {
+            throw new IllegalStateException("Alert was not present.");
+        }
+        // Optionally, you can verify the alert text
+        String alertText = alert.getText();
+        System.out.println("Alert text: " + alertText);
+    }
+
+    public void clickButtonOk() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
+        Alert alert = wait.until(ExpectedConditions.alertIsPresent());
+        alert.accept();
     }
 }

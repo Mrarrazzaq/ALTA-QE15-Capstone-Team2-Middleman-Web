@@ -9,4 +9,5 @@ public class LoginUserPage extends BasePage{
     public LoginUserPage(WebDriver driver) {
         super(driver);
     }
+
 }
