@@ -54,11 +54,23 @@ public class LoginSteps {
 
     @Then("User should be directed to the dashboard page")
     public void userShouldBeDirectedToTheDashboardPage() {
-        loginAdminPage.verifyLabelProduct();
+        Assert.assertTrue(loginAdminPage.verifyLabelProduct());
     }
 
     @Then("Admin not redirected to the dashboard page")
     public void adminNotRedirectedToTheDashboardPage() {
         loginAdminPage.verifyLoginPage();
+    }
+
+    @And("Admin should find allert and click ok")
+    public void adminShouldFindAllertAndClickOk() {
+        loginAdminPage.verifyAllert();
+        loginAdminPage.clickButtonOk();
+    }
+
+    @And("User should find allert and click ok")
+    public void userShouldFindAllertAndClickOk() {
+        loginAdminPage.verifyAllert();
+        loginAdminPage.clickButtonOk();
     }
 }
