@@ -83,7 +83,7 @@ public class LoginAdminPage extends BasePage{
     }
 
     public void clickButtonOk() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         Alert alert = wait.until(ExpectedConditions.alertIsPresent());
         alert.accept();
     }
