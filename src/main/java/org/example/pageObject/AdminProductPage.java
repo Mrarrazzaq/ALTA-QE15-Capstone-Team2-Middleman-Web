@@ -109,7 +109,7 @@ public class AdminProductPage extends BasePage {
     }
 
     public boolean verifyNewProduct(String productName) {
-        String elementXpath = "//h2[.='" + productName + "']";
+        String elementXpath = "//h2[.= + '" + productName + "']";
         // Wait for the element to be present
         WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(10));
         WebElement productNameH2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(elementXpath)));
