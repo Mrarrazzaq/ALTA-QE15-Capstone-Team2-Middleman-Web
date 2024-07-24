@@ -53,7 +53,7 @@ public class AdminProductSteps {
     }
     @Then("Admin should see an Alert {string}")
     public void adminShouldSeeAnAlert(String alert) {
-        Assert.assertEquals(alert, adminProductPage.getRegisterSuccessAlert());
+        Assert.assertEquals(alert,adminProductPage.getRegisterSuccessAlert());
     }
 
 
@@ -86,5 +86,31 @@ public class AdminProductSteps {
 
             Assert.assertEquals(expectedValidationMessage, adminProductPage.getValidationMessage(elementXpath));
         }
+
+    @And("Admin click inbound page")
+    public void adminClickInboundPage() {
+        adminProductPage.clickInboundButton();
     }
+
+    @Then("Admin can see Add {string} has been added")
+    public void adminCanSeeAddHasBeenAdded(String productName) {
+        adminProductPage.verifyInboundProduct(productName);
+    }
+
+    @When("Admin click submit button")
+    public void adminClickSubmitButton() {
+        adminProductPage.clickSubmitButton();
+
+    }
+
+    @Then("Admin should see the {string} in my product has been increased")
+    public void adminSholdSeeTheInMyProductHasBeenIncreased(String nameproduct) {
+            adminProductPage.verifyInboundProduct(nameproduct);
+    }
+
+    @When("Admin click button + at the page cart with name {string}")
+    public void adminClickButtonAtThePageCartWithName(String productName) {
+        adminProductPage.clickPlusButtonProduct(productName);
+    }
+}
 

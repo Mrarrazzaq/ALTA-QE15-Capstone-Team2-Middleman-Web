@@ -46,6 +46,9 @@ public class AdminProductPage extends BasePage {
     @FindBy(xpath = "//button[normalize-space(text()) = 'Add']")
     public WebElement addButton;
 
+    @FindBy(xpath = "//div[21]//button[@id='btn-add-product-out']")
+    public WebElement addButtonplus;
+
     @FindBy(xpath = "//ul[@class='menu menu-horizontal font-Roboto font-medium']//a[@id='to-cart']")
     private WebElement inboundButton;
     @FindBy(xpath = "//ul[@class='menu menu-horizontal font-Roboto font-medium']//a[@id='to-outbound']")
@@ -64,6 +67,7 @@ public class AdminProductPage extends BasePage {
         click(addProductButton);
 
     }
+
     public void verifyAddProductPopUp() {
         scrollIntoView(chooseImageFile);
         waitForElementClickable(chooseImageFile);
@@ -73,10 +77,12 @@ public class AdminProductPage extends BasePage {
 ////        boolean b = productNameField.isDisplayed();
 ////        return a && b;
     }
+
     public void inputImageFile(String namaFile) {
         String filePath = System.getProperty("user.dir") + "/src/main/resources/" + namaFile;
         chooseImageFile.sendKeys(filePath);
     }
+
     public void inputProductDetails(String productName, String unit, String stock, String price) {
         productNameField.sendKeys(productName);
         unitField.sendKeys(unit);
@@ -91,14 +97,17 @@ public class AdminProductPage extends BasePage {
         scrollIntoView(addButton);
         waitForElementClickable(addButton);
     }
+
     public String getRegisterSuccessAlert() {
         WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.alertIsPresent());
         return webDriver.switchTo().alert().getText();
     }
+
     public void clickAlertOk() {
         webDriver.switchTo().alert().accept();
     }
+
     public boolean verifyNewProduct(String productName) {
         String elementXpath = "//h2[.='" + productName + "']";
         // Wait for the element to be present
@@ -126,6 +135,7 @@ public class AdminProductPage extends BasePage {
         Alert alert = wait.until(ExpectedConditions.alertIsPresent());
         alert.accept();
     }
+
     public boolean checkInputFieldRequired(String elementName) {
         String elementXpath = "//input[@id='input-" + elementName + "']";
         WebElement inputElement = webDriver.findElement(By.xpath(elementXpath));
@@ -138,5 +148,33 @@ public class AdminProductPage extends BasePage {
         WebElement inputElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(elementXpath)));
         String validationMessage = inputElement.getAttribute("validationMessage");
         return validationMessage;
+    }
+    public static int currentProductStock;
+
+    public void clickPlusButtonProduct(String productName) {
+        String elementXpath = "//h2[.='" + productName + "']/ancestor::div[2]/following-sibling::div/div/button";
+        WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(10));
+        WebElement productPlusButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(elementXpath)));
+        productPlusButton.click();
+
+        //get Currentstock
+        String stockXpath = "//div/div[4]/div/div/div/h2[contains(text(), '" + productName + "')]/following-sibling::h3[contains(text(), 'Stock')]";
+        WebElement stockElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(stockXpath)));
+        String stockText = stockElement.getText();
+        currentProductStock = Integer.parseInt(stockText.replace("Stock: ", ""));
+    }
+    public void clickInboundButton() {
+        inboundButton.click();
+    }
+    public boolean verifyInboundProduct(String productName) {
+        String elementXpath = "//h2[.='" + productName + "']";
+        // Wait for the element to be present
+        WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(10));
+        WebElement productNameH2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(elementXpath)));
+        // Return the text of the element
+        return productNameH2.isDisplayed();
+    }
+    public void clickSubmitButton() {
+        submitButton.click();
     }
 }
