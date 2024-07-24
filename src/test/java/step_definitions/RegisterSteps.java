@@ -7,6 +7,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.example.pageObject.LoginAdminPage;
 import org.example.pageObject.LoginUserPage;
+import org.example.pageObject.RegisterUserPage;
 import org.example.pageObject.SampleLoginPage;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
@@ -15,7 +16,6 @@ public class RegisterSteps {
 
     private final WebDriver driver = Hooks.driver;
     LoginAdminPage loginAdminPage = new LoginAdminPage(driver);
-    LoginUserPage loginUserPage = new LoginUserPage(driver);
 
     @And("Click Sign up button")
     public void clickSignUpButton() {
@@ -33,7 +33,9 @@ public class RegisterSteps {
                     , String storeEmail
                     , String storePhoneNumber
                     , String storePassword
-                    , String storeAddress) {
+                    , String storeAddress
+            )
+    {
         loginAdminPage.inputFieldStoreName(storeName);
         loginAdminPage.inputFieldStoreEmail(storeEmail);
         loginAdminPage.inputFieldStorePhoneNumber(storePhoneNumber);
@@ -43,6 +45,7 @@ public class RegisterSteps {
 
     @When("User click register button")
     public void userClickRegisterButton() {
+        loginAdminPage.clickButtonRegister();
     }
 
     @Then("User should be directed to the login page")
