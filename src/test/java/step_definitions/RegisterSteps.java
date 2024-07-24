@@ -27,6 +27,11 @@ public class RegisterSteps {
         loginAdminPage.verifyRegisterPage();
     }
 
+    @Then("User not redirected to the login page")
+    public void userNotRedirectedToTheLoginPage() {
+        loginAdminPage.verifyRegisterPage();
+    }
+
     @And("User fill the form {string} as store name, {string} as store email, {string} as store phone number, {string} as store password, {string} as store address")
     public void userFillTheFormAsStoreNameAsStoreEmailAsStorePhoneNumberAsStorePasswordAsStoreAddress
             (String storeName
