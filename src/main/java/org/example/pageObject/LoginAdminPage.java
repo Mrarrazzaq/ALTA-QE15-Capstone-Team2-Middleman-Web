@@ -73,4 +73,15 @@ public class LoginAdminPage extends BasePage{
         Alert alert = wait.until(ExpectedConditions.alertIsPresent());
         alert.accept();
     }
+
+    public void clickButtonToSignUp() {
+        scrollIntoView(buttonToSignIn);
+        click(buttonToSignIn);
+    }
+
+    public boolean verifyRegisterPage() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
+        wait.until(ExpectedConditions.visibilityOf(buttonToSignUp));
+        return isDisplayed(buttonToSignIn);
+    }
 }
