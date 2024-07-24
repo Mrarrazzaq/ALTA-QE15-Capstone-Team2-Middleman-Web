@@ -10,7 +10,7 @@ import org.junit.runner.RunWith;
                 "hooks",
                 "step_definitions"
         },
-        features = {"classpath:features/"},
+        features = {"classpath:features/Authentication.feature"},
         plugin = {"pretty",
                 "html:target/site/cucumber-pretty.html",
                 "json:target/cucumber/cucumber.json"

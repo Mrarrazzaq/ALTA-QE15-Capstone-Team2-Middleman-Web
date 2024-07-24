@@ -26,12 +26,21 @@ public class Hooks {
     @Before
     public void openBrowser(){
         //inisiasi library selenium
-        driver = new ChromeDriver(GenerateDriverChrome());
+//        driver = new ChromeDriver(GenerateDriverChrome());
 
 //        String appUrl = "https://www.saucedemo.com/";
-        String appUrl = "https://middleman-fe.vercel.app/";
-        driver.get(appUrl);//fungsi untuk ngebuka link html
-        driver.manage().window().maximize();//fungsi untuk maximize browser
+//        String appUrl = "https://middleman-fe.vercel.app/";
+//        driver.get(appUrl);//fungsi untuk ngebuka link html
+//        driver.manage().window().maximize();//fungsi untuk maximize browser
+        WebDriverManager.chromedriver().setup();
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--remote-allow-origins=*");
+
+        driver = new ChromeDriver(options);
+
+        String appUrl = "https://middleman-fe.vercel.app/auth/welcome";
+        driver.get(appUrl);
+        driver.manage().window().maximize();
     }
 
     @After

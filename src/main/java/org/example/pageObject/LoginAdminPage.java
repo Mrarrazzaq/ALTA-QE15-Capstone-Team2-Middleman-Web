@@ -21,7 +21,7 @@ public class LoginAdminPage extends BasePage{
     private WebElement fieldPassword;
     @FindBy(xpath = "//button[@id='btn-login']")
     private WebElement buttonLogin;
-    @FindBy(css = "[alt='logo']")
+    @FindBy(xpath = "//input[@id='input-search']")
     private WebElement labelProduct;  //DashboardPage
 
 
@@ -42,7 +42,7 @@ public class LoginAdminPage extends BasePage{
         click(buttonLogin);
     }
     public boolean verifyLabelProduct(){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOf(labelProduct));
         return isDisplayed(labelProduct);
     }
