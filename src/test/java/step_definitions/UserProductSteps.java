@@ -3,15 +3,8 @@ package step_definitions;
 import hooks.Hooks;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
-import org.example.pageObject.AdminProductPage;
 import org.example.pageObject.UserProductPage;
-import org.openqa.selenium.Alert;
-import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.time.Duration;
 
 public class UserProductSteps {
 
@@ -60,9 +53,15 @@ public class UserProductSteps {
         userProductPage.inputProductImage(fileName);
     }
 
-    @And("User should find errorallert and click ok")
-    public void userShouldFindErrorallertAndClickOk() {
-        userProductPage.verifyErrorAllert();
+//    @And("User should find errorallert and click ok")
+//    public void userShouldFindErrorallertAndClickOk() {
+//        userProductPage.verifyErrorAllert();
+//        userProductPage.clickOkButton();
+//    }
+
+    @And("User should find error alert {string}")
+    public void userShouldFindErrorAlert(String errormessage) {
+        userProductPage.verifyErrorAllert(errormessage);
         userProductPage.clickOkButton();
     }
 }

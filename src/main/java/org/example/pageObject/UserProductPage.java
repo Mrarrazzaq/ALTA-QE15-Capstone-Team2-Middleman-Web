@@ -99,7 +99,7 @@ public class UserProductPage extends BasePage{
         addSaveProductButton.click();
     }
 
-    public void verifyErrorAllert() {
+    public void verifyErrorAllert(String errormessage) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         Alert alert = wait.until(ExpectedConditions.alertIsPresent());
         if (alert == null) {
@@ -108,7 +108,7 @@ public class UserProductPage extends BasePage{
         // Optionally, you can verify the alert text
         String alertText = alert.getText();
         System.out.println("Alert text: " + alertText);
-        if (alertText.equals("there is an error in internal server")) {
+        if (alertText.equals(errormessage)) {
             System.out.println("Alert text: " + alertText);
         }
     }
