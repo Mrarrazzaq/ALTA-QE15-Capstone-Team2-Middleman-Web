@@ -145,7 +145,8 @@ public class UserProductPage extends BasePage{
     }
 
     public void verifyAllProduct() {
-        waitForElementVisible(newProductElement);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5)); // Batas waktu 5 detik kalo gak muncul berarti bug
+        wait.until(ExpectedConditions.visibilityOf(newProductElement));
     }
 
     public void clickSearchBar() {

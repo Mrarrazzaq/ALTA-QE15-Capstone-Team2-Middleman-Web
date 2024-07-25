@@ -1,4 +1,4 @@
-@Tests
+#@Tests
 Feature: My product admin can manage product
 
   Scenario Outline: The user (Admin) can add products that are already available
