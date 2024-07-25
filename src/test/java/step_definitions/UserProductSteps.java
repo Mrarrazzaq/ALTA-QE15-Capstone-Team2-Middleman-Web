@@ -84,4 +84,9 @@ public class UserProductSteps {
     public void userClickSearch() {
         userProductPage.clickSearchButton();
     }
+
+    @Then("User should not find any product")
+    public void userShouldNotFindAnyProduct() {
+        userProductPage.verifyNoProduct();
+    }
 }

@@ -45,6 +45,9 @@ public class UserProductPage extends BasePage{
     @FindBy(xpath = "//input[@id='input-search']")
     private WebElement seacrhBar;
 
+    @FindBy(xpath = "//div[@class='flex justify-center items-center text-lg md:text-3xl font-Roboto font-bold text-slate-700/20']")
+    private WebElement dataNotFound;
+
     public void clickMyProductButton() {
         waitForElementClickable(myProductButton);
         myProductButton.click();
@@ -148,5 +151,9 @@ public class UserProductPage extends BasePage{
     public void clickSearchBar() {
         waitForElementClickable(seacrhBar);
         seacrhBar.click();
+    }
+
+    public void verifyNoProduct() {
+        waitForElementVisible(dataNotFound);
     }
 }

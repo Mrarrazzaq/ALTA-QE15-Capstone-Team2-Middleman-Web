@@ -12,3 +12,15 @@ Feature: Search feature
     And User click search
     When User delete search product
     Then All product on dashborad should be displayed
+
+    Scenario: User unable to find non exist product
+      Given User open the Middleman website
+      And Click Sign in button
+      When User input "shop1.middleman@mail.com" as userName and "shop123" as password and click login
+      And User should find allert and click ok
+      Then User should be directed to the dashboard page
+      When User click Search bar
+      And User input "Matahari" as search
+      And User click search
+      Then User should not find any product
+
