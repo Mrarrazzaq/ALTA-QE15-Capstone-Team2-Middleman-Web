@@ -23,6 +23,20 @@ public class LoginAdminPage extends BasePage{
     private WebElement buttonLogin;
     @FindBy(xpath = "//input[@id='input-search']")
     private WebElement labelProduct;  //DashboardPage
+    @FindBy(xpath = "//button[@id='to-register']")
+    private WebElement buttonToSignUp;
+    @FindBy(xpath = "//input[@id='input-name']")
+    private WebElement registerName;
+    @FindBy(xpath = "//input[@id='input-email']")
+    private WebElement registerEmail;
+    @FindBy (xpath = "//input[@id='input-password']")
+    private WebElement registerPassword;
+    @FindBy (xpath = "//input[@id='input-phone']")
+    private WebElement registerPhoneNumber;
+    @FindBy (xpath = "//input[@id='input-address']")
+    private WebElement registerAddress;
+    @FindBy (xpath = "//button[@id='to-register']")
+    private WebElement registerButton;
 
 
 
@@ -69,8 +83,44 @@ public class LoginAdminPage extends BasePage{
     }
 
     public void clickButtonOk() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         Alert alert = wait.until(ExpectedConditions.alertIsPresent());
         alert.accept();
+    }
+
+    public boolean verifyRegisterPage() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
+        wait.until(ExpectedConditions.visibilityOf(registerAddress));
+        return isDisplayed(registerAddress);
+    }
+    public void clickButtonToSignUp(){
+        scrollIntoView(buttonToSignUp);
+        waitForElementClickable(buttonToSignUp);
+        click(buttonToSignUp);
+    }
+    public void clickButtonRegister(){
+        scrollIntoView(registerButton);
+        waitForElementClickable(registerButton);
+        click(registerButton);
+    }
+
+    public void inputFieldStoreName(String storeName) {
+        sendKeys(registerName, storeName);
+    }
+
+    public void inputFieldStoreEmail(String storeEmail) {
+        sendKeys(registerEmail, storeEmail);
+    }
+
+    public void inputFieldStorePhoneNumber(String storePhoneNumber) {
+        sendKeys(registerPhoneNumber, storePhoneNumber);
+    }
+
+    public void inputFieldStorePassword(String storePassword) {
+        sendKeys(registerPassword, storePassword);
+    }
+
+    public void inputFieldStoreAddress(String storeAddress) {
+        sendKeys(registerAddress, storeAddress);
     }
 }
