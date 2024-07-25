@@ -43,17 +43,20 @@ public class AdminProductSteps {
 
     @And("Click add button")
     public void clickAddButton() throws InterruptedException {
+        adminProductPage.clickAddButton();
+
 //        JavascriptExecutor j = (JavascriptExecutor) driver;
 
-        JavascriptExecutor j = (JavascriptExecutor) driver;
-        j.executeScript("arguments[0].click();",adminProductPage.addButton);
+//        JavascriptExecutor j = (JavascriptExecutor) driver;
+//        j.executeScript("arguments[0].click();",adminProductPage.addButton);
 //        Thread.sleep(3000);
 //        adminProductPage.clickAddButton();
 //        Thread.sleep(3000);
     }
-    @Then("Admin should see an Alert {string}")
-    public void adminShouldSeeAnAlert(String alert) {
-        Assert.assertEquals(alert,adminProductPage.getRegisterSuccessAlert());
+    @Then("Admin should see an Alert")
+    public void adminShouldSeeAnAlert() {
+        adminProductPage.verifyAllert();
+        adminProductPage.clickButtonOk();
     }
 
 
@@ -112,5 +115,6 @@ public class AdminProductSteps {
     public void adminClickButtonAtThePageCartWithName(String productName) {
         adminProductPage.clickPlusButtonProduct(productName);
     }
+
 }
 

@@ -19,7 +19,7 @@ Feature: User Product
     Then User should see the "<name>" in my product
     Examples:
       | name       | unit | stock | price | image           |
-      | product 11 | pcs  | 10000 | 1000  | BawangMerah.jpg |
+      | product S | pcs  | 10000 | 1000  | BawangMerah.jpg |
 
   Scenario Outline: User unable to add new product with existing data
     Given User open the Middleman website

@@ -94,8 +94,9 @@ public class AdminProductPage extends BasePage {
 //        WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(10));
 //        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/div/div[5]/div/form/div[2]/button[@id='btn-add']")));
 //        addButton.click();
-        scrollIntoView(addButton);
+
         waitForElementClickable(addButton);
+        addButton.click();
     }
 
     public String getRegisterSuccessAlert() {
