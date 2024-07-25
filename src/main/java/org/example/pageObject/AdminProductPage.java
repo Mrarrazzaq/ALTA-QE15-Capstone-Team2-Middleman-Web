@@ -1,10 +1,7 @@
 package org.example.pageObject;
 
 import org.example.BasePage;
-import org.openqa.selenium.Alert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -18,21 +15,11 @@ public class AdminProductPage extends BasePage {
         super(driver);
     }
 
-//    @FindBy(xpath = "//input[@id='input-search']")
-//    private WebElement searchField;
-//    @FindBy(xpath = "//div[@class='dropdown dropdown-end mx-2 hidden lg:block']")
-//    private WebElement profileButton;
-//    @FindBy(xpath = "//button[@class='btn btn-sm btn-secondary text-white mt-2 p-1']")
-//    private WebElement logoutButton;
-//    @FindBy(xpath = "//div[@id='__next']/div[@class='modal']/div[.='LogoutAre you sure you want to logout ?YesNo']")
-//    private WebElement logoutModal;
-//    @FindBy(xpath = "//button[@id='btn-yes']")
-//    private WebElement yesButton;
+    @FindBy(xpath = "//input[@id='input-search']")
+    private WebElement searchField;
 
     @FindBy(xpath = "//button[@class='btn btn-sm btn-primary modal-button text-white font-Roboto']")
     private WebElement addProductButton;
-    @FindBy(xpath = "//div[@id='__next']/div[@class='modal']//input[@id='input-image']")
-    private WebElement addProductModal;
     @FindBy(xpath = "//div[@id='__next']/div[@class='modal']//input[@id='input-name']")
     private WebElement productNameField;
     @FindBy(xpath = "//div[@id='__next']/div[@class='modal']//input[@id='input-image']")
@@ -51,19 +38,11 @@ public class AdminProductPage extends BasePage {
 
     @FindBy(xpath = "//ul[@class='menu menu-horizontal font-Roboto font-medium']//a[@id='to-cart']")
     private WebElement inboundButton;
-    @FindBy(xpath = "//ul[@class='menu menu-horizontal font-Roboto font-medium']//a[@id='to-outbound']")
-    private WebElement outboundButton;
     @FindBy(xpath = "//button[@id='btn-submit']")
     private WebElement submitButton;
-    @FindBy(xpath = "//ul[@class='menu menu-horizontal font-Roboto font-medium']//a[@id='to-my-product']")
-    private WebElement myProductButton;
 
 
     public void clickAddProduct() {
-//        WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(10));
-//        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@class='btn btn-sm btn-primary modal-button text-white font-Roboto']")));
-//        scrollIntoView(addProductButton);
-//        waitForElementClickable(addProductButton);
         click(addProductButton);
 
     }
@@ -152,30 +131,40 @@ public class AdminProductPage extends BasePage {
     }
     public static int currentProductStock;
 
-    public void clickPlusButtonProduct(String productName) {
-        String elementXpath = "//h2[.='" + productName + "']/ancestor::div[2]/following-sibling::div/div/button";
-        WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(10));
-        WebElement productPlusButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(elementXpath)));
-        productPlusButton.click();
+    public void clickPlusButtonProduct() {
+        waitForElementClickable(addButtonplus);
+        addButtonplus.click();
 
-        //get Currentstock
-        String stockXpath = "//div/div[4]/div/div/div/h2[contains(text(), '" + productName + "')]/following-sibling::h3[contains(text(), 'Stock')]";
-        WebElement stockElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(stockXpath)));
-        String stockText = stockElement.getText();
-        currentProductStock = Integer.parseInt(stockText.replace("Stock: ", ""));
     }
     public void clickInboundButton() {
         inboundButton.click();
     }
-    public boolean verifyInboundProduct(String productName) {
-        String elementXpath = "//h2[.='" + productName + "']";
-        // Wait for the element to be present
-        WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(10));
-        WebElement productNameH2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(elementXpath)));
-        // Return the text of the element
-        return productNameH2.isDisplayed();
+    public void verifyInboundProduct() {
+        click(inboundButton);
+
+
     }
     public void clickSubmitButton() {
         submitButton.click();
+    }
+
+    public void clickSearchBar(){
+        waitForElementClickable(searchField);
+        searchField.click();
+    }
+
+    public void inputSearchBar(String productName){
+        waitForElementClickable(searchField);
+        searchField.sendKeys(productName);
+    }
+
+    public void searchBarInput(){
+        searchField.click();
+    }
+
+    public void deleteSearch(){
+        waitForElementClickable(searchField);
+        searchField.click();
+        searchField.sendKeys(Keys.CONTROL + "a" + Keys.DELETE);
     }
 }
