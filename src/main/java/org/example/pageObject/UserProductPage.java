@@ -48,6 +48,9 @@ public class UserProductPage extends BasePage{
     @FindBy(xpath = "//div[@class='flex justify-center items-center text-lg md:text-3xl font-Roboto font-bold text-slate-700/20']")
     private WebElement dataNotFound;
 
+    @FindBy(xpath = "//h2[.='Panci Anti Hilang']")
+    private WebElement newProductElement2;
+
     public void clickMyProductButton() {
         waitForElementClickable(myProductButton);
         myProductButton.click();
@@ -157,4 +160,9 @@ public class UserProductPage extends BasePage{
     public void verifyNoProduct() {
         waitForElementVisible(dataNotFound);
     }
+
+    public void verifyUserAllProduct() {
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5)); // Batas waktu 5 detik kalo gak muncul berarti bug
+            wait.until(ExpectedConditions.visibilityOf(newProductElement2));
+        }
 }

@@ -89,4 +89,9 @@ public class UserProductSteps {
     public void userShouldNotFindAnyProduct() {
         userProductPage.verifyNoProduct();
     }
+
+    @Then("All product on my product should be displayed")
+    public void allProductOnMyProductShouldBeDisplayed() {
+        userProductPage.verifyUserAllProduct();
+    }
 }
