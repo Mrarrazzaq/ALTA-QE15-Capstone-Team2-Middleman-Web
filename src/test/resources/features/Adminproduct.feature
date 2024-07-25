@@ -15,8 +15,8 @@ Feature: My product admin can manage product
     And Admin should see an Alert and click ok
     Then Admin should be directed to the dashboard page
     Examples:
-    |file           |productname            |unit|stock  |price |
-    |BawangMerah.jpg|Kecap Sedap Wing       |kg  |1000   |20000 |
+      | file            | productname       | unit | stock | price |
+      | BawangMerah.jpg | Kecap Sedap Wingg | kg   | 1000  | 20000 |
 
 
 
@@ -34,10 +34,10 @@ Feature: My product admin can manage product
     And Admin input Product Name field "<productname>", input Unit field "<unit>", input Stock field "<stock>", input Price field "<price>"
     And Click add button
     Examples:
-      |file            |productname          |unit|stock  |price |
-      |BawangMerah.jpg |                     |kg  |1000   |20000 |
-      |BawangMerah.jpg |Kecap Asin           |    |1000   |20000 |
-      |                |                     |    |       |      |
+      | file            | productname | unit | stock | price |
+      | BawangMerah.jpg |             | kg   | 1000  | 20000 |
+      | BawangMerah.jpg | Kecap Asin  |      | 1000  | 20000 |
+      |                 |             |      |       |       |
 
   Scenario: The user (Admin) can update stock item by + button
     Given Admin open the Middleman website

@@ -12,7 +12,7 @@ Feature: Register Test
     Then User should be directed to the login page
     Examples:
       | storeName | storeEmail                  | storePhoneNumber | storePassword | storeAddress |
-      | Store 13  | store13.middleman@gmail.com | 08123456789013    | Store123$     | Jl. Jalan 1  |
+      | Store 17  | store17.middleman@gmail.com | 08123456789017    | Store123$     | Jl. Jalan 1  |
 
   Scenario Outline: User unable to register new store account with exist data
     Given User open the Middleman website

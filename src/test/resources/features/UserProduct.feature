@@ -38,7 +38,7 @@ Feature: User Product
     And User should be directed to the my product page
     Examples:
       | name       | unit | stock | price | image           |
-      | product 10 | pcs  | 10000 | 1000  | BawangMerah.jpg |
+      | product 15 | pcs  | 10000 | 1000  | BawangMerah.jpg |
 
   Scenario Outline: User not able to add new product with uncomplete data
     Given User open the Middleman website
