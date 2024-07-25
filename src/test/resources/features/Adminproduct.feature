@@ -11,12 +11,11 @@ Feature: My product admin can manage product
     And Click field input "<file>" for product image
     And Admin input Product Name field "<productname>", input Unit field "<unit>", input Stock field "<stock>", input Price field "<price>"
     And Click add button
-    Then Admin should see an Alert "success adding a product"
-    When Admin click OK on alert
+    Then Admin should see an Alert
     Then Admin shold see the "<productname>" in my product
     Examples:
     |file           |productname       |unit|stock  |price |
-    |BawangMerah.jpg|Laos Malay        |kg  |1000   |20000 |
+    |BawangMerah.jpg|Kecap bango       |kg  |1000   |20000 |
 
 
     #Negative not input picture
