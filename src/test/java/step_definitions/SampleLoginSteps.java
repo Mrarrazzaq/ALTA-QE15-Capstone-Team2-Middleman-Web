@@ -16,15 +16,27 @@ public class SampleLoginSteps {
         Assert.assertTrue(sampleLoginPage.verifyLoginPage());
     }
 
-    @When("User input {string} as userName and {string} as password and click login")
-    public void userInputAsUserNameAndAsPasswordAndClickLogin(String username, String password) {
+//    @When("User input {string} as userName and {string} as password and click login")
+//    public void userInputAsUserNameAndAsPasswordAndClickLogin(String username, String password) {
+//        sampleLoginPage.inputFieldUserName(username);
+//        sampleLoginPage.inputFieldPassword(password);
+//        sampleLoginPage.clickButtonLogin();
+//    }
+
+//    @Then("User should be directed to the dashboard page")
+//    public void userShouldBeDirectedToTheDashboardPage() {
+//        Assert.assertTrue(sampleLoginPage.verifyLabelProduct());
+//    }
+
+    @When("User saucedemo input {string} as userName and {string} as password and click login")
+    public void userSaucedemoInputAsUserNameAndAsPasswordAndClickLogin(String username, String password) {
         sampleLoginPage.inputFieldUserName(username);
         sampleLoginPage.inputFieldPassword(password);
         sampleLoginPage.clickButtonLogin();
     }
 
-    @Then("User should be directed to the dashboard page")
-    public void userShouldBeDirectedToTheDashboardPage() {
+    @Then("User saucedemo should be directed to the dashboard page")
+    public void userSaucedemoShouldBeDirectedToTheDashboardPage() {
         Assert.assertTrue(sampleLoginPage.verifyLabelProduct());
     }
 }
