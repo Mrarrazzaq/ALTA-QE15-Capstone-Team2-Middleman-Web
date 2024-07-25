@@ -3,6 +3,7 @@ package step_definitions;
 import hooks.Hooks;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import org.example.pageObject.UserProductPage;
 import org.openqa.selenium.WebDriver;
 
@@ -53,15 +54,34 @@ public class UserProductSteps {
         userProductPage.inputProductImage(fileName);
     }
 
-//    @And("User should find errorallert and click ok")
-//    public void userShouldFindErrorallertAndClickOk() {
-//        userProductPage.verifyErrorAllert();
-//        userProductPage.clickOkButton();
-//    }
-
     @And("User should find error alert {string}")
     public void userShouldFindErrorAlert(String errormessage) {
         userProductPage.verifyErrorAllert(errormessage);
         userProductPage.clickOkButton();
+    }
+
+    @And("User input {string} as search")
+    public void userInputAsSearch(String productName) {
+        userProductPage.inputSearch(productName);
+    }
+
+    @When("User delete search product")
+    public void userDeleteSearchProduct() {
+        userProductPage.deleteSearchProduct();
+    }
+
+    @Then("All product on dashborad should be displayed")
+    public void allProductOnDashboradShouldBeDisplayed() {
+        userProductPage.verifyAllProduct();
+    }
+
+    @When("User click Search bar")
+    public void userClickSearchBar() {
+        userProductPage.clickSearchBar();
+    }
+
+    @And("User click search")
+    public void userClickSearch() {
+        userProductPage.clickSearchButton();
     }
 }

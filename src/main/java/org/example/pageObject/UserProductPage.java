@@ -39,6 +39,12 @@ public class UserProductPage extends BasePage{
     @FindBy(xpath = "//h2[.='Batu Kaliiii']")
     private WebElement newProductElement;
 
+    @FindBy(xpath = "//button[@id='btn-search']")
+    private WebElement searchButton;
+
+    @FindBy(xpath = "//input[@id='input-search']")
+    private WebElement seacrhBar;
+
     public void clickMyProductButton() {
         waitForElementClickable(myProductButton);
         myProductButton.click();
@@ -116,5 +122,31 @@ public class UserProductPage extends BasePage{
     public void clickOkButton() {
         Alert alert = driver.switchTo().alert();
         alert.accept();
+    }
+
+    public void clickSearchButton() {
+        waitForElementClickable(searchButton);
+        searchButton.click();
+    }
+
+    public void inputSearch(String productName) {
+        waitForElementClickable(seacrhBar);
+        seacrhBar.sendKeys(productName);
+    }
+
+    public void deleteSearchProduct() {
+        waitForElementClickable(seacrhBar);
+        seacrhBar.click();
+        seacrhBar.sendKeys(Keys.CONTROL + "a" + Keys.DELETE);
+
+    }
+
+    public void verifyAllProduct() {
+        waitForElementVisible(newProductElement);
+    }
+
+    public void clickSearchBar() {
+        waitForElementClickable(seacrhBar);
+        seacrhBar.click();
     }
 }
