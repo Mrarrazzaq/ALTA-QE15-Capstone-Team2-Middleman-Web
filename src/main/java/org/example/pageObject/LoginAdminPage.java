@@ -37,6 +37,12 @@ public class LoginAdminPage extends BasePage{
     private WebElement registerAddress;
     @FindBy (xpath = "//button[@id='to-register']")
     private WebElement registerButton;
+    @FindBy (xpath = "//label[@class='btn btn-ghost btn-circle avatar']")
+    private WebElement profileButton;
+    @FindBy (xpath = "//button[@class='btn btn-sm btn-secondary text-white mt-2 p-1']")
+    private WebElement logoutButton;
+    @FindBy (xpath = "//button[@id='btn-yes']")
+    private WebElement confirmLogoutButton;
 
 
 
@@ -122,5 +128,17 @@ public class LoginAdminPage extends BasePage{
 
     public void inputFieldStoreAddress(String storeAddress) {
         sendKeys(registerAddress, storeAddress);
+    }
+
+    public void clickButtonLogout() {
+        waitForElementClickable(profileButton);
+        click(profileButton);
+        waitForElementClickable(logoutButton);
+        click(logoutButton);
+    }
+
+    public void clickButtonLogoutYes() {
+        waitForElementClickable(confirmLogoutButton);
+        click(confirmLogoutButton);
     }
 }

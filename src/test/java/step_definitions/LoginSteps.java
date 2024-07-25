@@ -73,4 +73,20 @@ public class LoginSteps {
         loginAdminPage.verifyAllert();
         loginAdminPage.clickButtonOk();
     }
+
+    @And("Click Logout button")
+    public void clickLogoutButton() {
+        loginAdminPage.clickButtonLogout();
+        loginAdminPage.clickButtonLogoutYes();
+    }
+
+    @Then("User should be directed to the landing page")
+    public void userShouldBeDirectedToTheLandingPage() {
+        loginAdminPage.verifyLandingPage();
+    }
+
+    @Then("Admin should be directed to the landing page")
+    public void adminShouldBeDirectedToTheLandingPage() {
+        loginAdminPage.verifyLandingPage();
+    }
 }
