@@ -1,9 +1,7 @@
 package org.example.pageObject;
 
 import org.example.BasePage;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -99,5 +97,24 @@ public class UserProductPage extends BasePage{
     public void clickAddProductButton() {
         waitForElementClickable(addSaveProductButton);
         addSaveProductButton.click();
+    }
+
+    public void verifyErrorAllert() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        Alert alert = wait.until(ExpectedConditions.alertIsPresent());
+        if (alert == null) {
+            throw new IllegalStateException("Alert was not present.");
+        }
+        // Optionally, you can verify the alert text
+        String alertText = alert.getText();
+        System.out.println("Alert text: " + alertText);
+        if (alertText.equals("there is an error in internal server")) {
+            System.out.println("Alert text: " + alertText);
+        }
+    }
+
+    public void clickOkButton() {
+        Alert alert = driver.switchTo().alert();
+        alert.accept();
     }
 }
