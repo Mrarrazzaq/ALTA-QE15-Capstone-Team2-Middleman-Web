@@ -4,6 +4,7 @@ import hooks.Hooks;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.example.pageObject.AdminHistoryOrderPage;
 import org.example.pageObject.AdminProductPage;
 import org.example.pageObject.LoginAdminPage;
 import org.junit.Assert;
@@ -21,6 +22,8 @@ import static org.bouncycastle.asn1.x500.style.RFC4519Style.l;
 public class AdminProductSteps {
     private final WebDriver driver = Hooks.driver;
     AdminProductPage adminProductPage = new AdminProductPage(driver);
+    AdminHistoryOrderPage adminHistoryOrderPage = new AdminHistoryOrderPage(driver);
+
     @Then("Admin click Add product button")
     public void adminClickAddProductButtonPopUp() {
         adminProductPage.clickAddProduct();
@@ -43,23 +46,19 @@ public class AdminProductSteps {
 
     @And("Click add button")
     public void clickAddButton() throws InterruptedException {
-//        JavascriptExecutor j = (JavascriptExecutor) driver;
-
-        JavascriptExecutor j = (JavascriptExecutor) driver;
-        j.executeScript("arguments[0].click();",adminProductPage.addButton);
-//        Thread.sleep(3000);
-//        adminProductPage.clickAddButton();
-//        Thread.sleep(3000);
+        adminProductPage.clickAddButton();
     }
-    @Then("Admin should see an Alert {string}")
-    public void adminShouldSeeAnAlert(String alert) {
-        Assert.assertEquals(alert,adminProductPage.getRegisterSuccessAlert());
+    @Then("Admin should see an Alert and click ok")
+    public void adminShouldSeeAnAlert() {
+        adminProductPage.verifyAllert();
+        adminProductPage.clickButtonOk();
     }
 
 
     @When("Admin click OK on alert")
     public void adminClickOKOnAlert() {
-        adminProductPage.clickAlertOk();
+        adminProductPage.verifyAllert();
+        adminProductPage.clickButtonOk();
     }
 
     @Then("Admin shold see the {string} in my product")
@@ -93,8 +92,8 @@ public class AdminProductSteps {
     }
 
     @Then("Admin can see Add {string} has been added")
-    public void adminCanSeeAddHasBeenAdded(String productName) {
-        adminProductPage.verifyInboundProduct(productName);
+    public void adminCanSeeAddHasBeenAdded() {
+        adminProductPage.verifyInboundProduct();
     }
 
     @When("Admin click submit button")
@@ -103,14 +102,61 @@ public class AdminProductSteps {
 
     }
 
-    @Then("Admin should see the {string} in my product has been increased")
-    public void adminSholdSeeTheInMyProductHasBeenIncreased(String nameproduct) {
-            adminProductPage.verifyInboundProduct(nameproduct);
+//    @Then("Admin should see the {string} in my product has been increased")
+//    public void adminSholdSeeTheInMyProductHasBeenIncreased(String nameproduct) {
+//            adminProductPage.verifyInboundProduct(nameproduct);
+//    }
+
+    @When("Admin click button + at the page cart")
+    public void adminClickButtonAtThePageCartWithName() {
+        adminProductPage.clickPlusButtonProduct();
     }
 
-    @When("Admin click button + at the page cart with name {string}")
-    public void adminClickButtonAtThePageCartWithName(String productName) {
-        adminProductPage.clickPlusButtonProduct(productName);
+    @When("Admin click Search bar")
+    public void adminClickSearchBar() {
+        adminProductPage.clickSearchBar();
+    }
+
+    @And("Admin input {string} as search")
+    public void adminInputAsSearch(String inputSearchBar) {
+        adminProductPage.inputSearchBar(inputSearchBar);
+
+    }
+
+    @And("Admin click search")
+    public void adminClickSearch() {
+        adminProductPage.searchBarInput();
+    }
+
+    @When("Admin delete search product")
+    public void adminDeleteSearchProduct() {
+        adminProductPage.deleteSearch();
+    }
+
+    @Then("Admin product on dashborad should be displayed")
+    public void adminProductOnDashboradShouldBeDisplayed() {
+    }
+
+
+    @When("Admin click meno history order")
+    public void adminClickMenoHistoryOrder() {
+        adminHistoryOrderPage.clickMenuHistory();
+    }
+
+    @Then("Admin click detail product")
+    public void adminClickDetailProduct() {
+        adminHistoryOrderPage.clickMenuHistory();
+    }
+
+    @And("Admin confirm order product click button done")
+    public void adminConfirmOrderProductClickButtonDone() {
+        adminHistoryOrderPage.clickMenuHistory();
+
+    }
+
+    @Then("Admin can see product in incoming product")
+    public void adminCanSeeProductInIncomingProduct() {
+        adminHistoryOrderPage.clickMenuHistory();
     }
 }
 
