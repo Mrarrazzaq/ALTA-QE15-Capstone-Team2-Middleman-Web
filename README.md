@@ -45,5 +45,5 @@ To run the project and execute the automated tests, follow these steps:
 ## Our Great Team
 - Fahcry Syaputra
 - Muhammad Rachmad Arrazaq
-```
 
+## Let Us Know if you would like to know more or collaborate on this project.
